@@ -5,9 +5,8 @@
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
  * @package rvf
- */
-
-if ( ! function_exists( 'rvf_setup' ) ) :
+ */    
+if (! function_exists( 'rvf_setup' )) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -35,6 +34,11 @@ if ( ! function_exists( 'rvf_setup' ) ) :
 		 */
 		add_theme_support( 'title-tag' );
 
+		/**
+		 * Enable support for the Aside Post Format
+		 */
+		add_theme_support( 'post-formats', array( 'aside' ) );
+	
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
 		 *
@@ -44,7 +48,7 @@ if ( ! function_exists( 'rvf_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'rvf' ),
+			'primary' => esc_html__( 'Primary', 'rvf' ),
 		) );
 
 		/*
@@ -61,7 +65,7 @@ if ( ! function_exists( 'rvf_setup' ) ) :
 
 		// Set up the WordPress core custom background feature.
 		add_theme_support( 'custom-background', apply_filters( 'rvf_custom_background_args', array(
-			'default-color' => 'ffffff',
+			'default-color' => '050f56', /* RVF default color */
 			'default-image' => '',
 		) ) );
 
@@ -94,7 +98,7 @@ function rvf_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'rvf_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'rvf_content_width', 654 );
 }
 add_action( 'after_setup_theme', 'rvf_content_width', 0 );
 
@@ -103,6 +107,7 @@ add_action( 'after_setup_theme', 'rvf_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
+ /*
 function rvf_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__( 'Sidebar', 'rvf' ),
@@ -115,10 +120,12 @@ function rvf_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'rvf_widgets_init' );
+*/
 
 /**
  * Enqueue scripts and styles.
  */
+ /*
 function rvf_scripts() {
 	wp_enqueue_style( 'rvf-style', get_stylesheet_uri() );
 
@@ -131,37 +138,45 @@ function rvf_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'rvf_scripts' );
+*/
+/**
+ * Custom functions that act independently of the theme templates
+ */
+//require( get_template_directory() . '/inc/tweaks.php' );
 
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+//require get_template_directory() . '/inc/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+//require get_template_directory() . '/inc/template-functions.php';
 
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+//require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
+ /*
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
+*/
 /**
  * Load WooCommerce compatibility file.
  */
+ /*
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+*/
