@@ -22,7 +22,9 @@ services:
   wordpress:
     depends_on:
       - db
-    image: wordpress:latest
+    build:
+      context: .
+      dockerfile: ./Dockerfile-wordpress
     ports:
       - 8000:80
     restart: always
@@ -31,5 +33,6 @@ services:
       WORDPRESS_DB_USER: user
       WORDPRESS_DB_PASSWORD: rvf
       WORDPRESS_DB_NAME: rvf-wordpress
+      WORDPRESS_DEBUG: 1
 volumes:
   db_data: {}

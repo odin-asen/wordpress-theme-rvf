@@ -1,0 +1,11 @@
+FROM wordpress:latest as build
+
+# Copy theme from source and name it rvf
+RUN mkdir -p /var/www/html/wp-content/themes/rvf
+COPY ./src /var/www/html/wp-content/themes/rvf
+
+# Copy plugins
+RUN mkdir -p /var/www/html/wp-content/plugins
+COPY ./docker/plugins /var/www/html/wp-content/plugins
+
+CMD ["apache2-foreground"]
